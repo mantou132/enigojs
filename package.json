@@ -8,8 +8,7 @@
     "build": "tsc",
     "watch": "tsc -watch",
     "lint": "eslint --ext .ts --fix src/",
-    "test": "jest --coverage",
-    "prepare": "npm run lint && npm run test && npm run build"
+    "prepare": "npm run lint && npm run build"
   },
   "keywords": [
     "keyboard",
@@ -33,11 +32,9 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^2.7.0",
-    "jest": "^24.9.0",
     "lint-staged": "^8.2.1",
     "neon-cli": "^0.3.3",
     "prettier": "^1.19.0",
-    "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
   },
   "husky": {
