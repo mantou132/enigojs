@@ -1,8 +1,9 @@
 [package]
 name = "my-project"
 version = "0.1.0"
-authors = ["xianqiao.wxq <xianqiao.wxq@alibaba-inc.com>"]
+authors = ["mantou132 <709922234@@qq.com>"]
 license = "MIT"
+edition = "2018"
 build = "build.rs"
 exclude = ["artifacts.json", "index.node"]
 
@@ -15,3 +16,4 @@ neon-build = "0.3.3"
 
 [dependencies]
 neon = "0.3.3"
+enigo = "0.0.13"

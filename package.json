@@ -1,7 +1,7 @@
 {
-  "name": "node-boilerplate",
+  "name": "enigojs",
   "version": "0.0.1",
-  "description": "node lib boilerplate",
+  "description": "input simulation",
   "main": "index.js",
   "scripts": {
     "install": "rm -rf native && neon build -p src && cp -r src/native native",
@@ -12,9 +12,15 @@
     "prepare": "npm run lint && npm run test && npm run build"
   },
   "keywords": [
-    "lib",
-    "boilerplate"
+    "keyboard",
+    "mouse",
+    "autohotkey",
+    "enigo"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mantou132/enigojs.git"
+  },
   "author": "mt",
   "license": "ISC",
   "devDependencies": {
@@ -29,6 +35,7 @@
     "husky": "^2.7.0",
     "jest": "^24.9.0",
     "lint-staged": "^8.2.1",
+    "neon-cli": "^0.3.3",
     "prettier": "^1.19.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
