@@ -1,0 +1,22 @@
+/src/native/target
+/src/native/index.node
+/src/native/artifacts.json
+**/*~
+
+/node_modules/
+
+# Compiler output
+/build/
+/coverage/
+/~root/
+/lib/
+/native/
+/index.d.ts
+/index.d.ts.map
+/index.js
+/index.js.map
+
+.DS_Store
+logs
+*.log
+npm-debug.log*
