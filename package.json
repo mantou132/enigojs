@@ -15,8 +15,7 @@
     "/index.js.map",
     "/index.d.ts",
     "/index.d.ts.map",
-    "/lib/",
-    "/src/"
+    "/lib/"
   ],
   "keywords": [
     "keyboard",
