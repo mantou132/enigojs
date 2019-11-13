@@ -1,13 +1,12 @@
+import { MouseButton, Key } from '../lib/type';
+
 export function mouseMoveTo(x: number, y: number): void;
+export function mouseMoveToRelative(x: number, y: number): void;
+export function keyDown(key: Key): void;
+export function keyUp(key: Key): void;
+export function keyClick(key: Key): void;
+export function keySequence(keySequence: string): void;
 export function keySequenceParse(keySequence: string): void;
-/**
-   * 
-    Left = 0,
-    Middle = 1,
-    Right = 2,
-    ScrollUp = 3,
-    ScrollDown = 4,
-    ScrollLeft = 5,
-    ScrollRight = 6,
-   */
-export function mouseClick(button: 0 | 1 | 2 | 3 | 4 | 5 | 6): void;
+export function mouseDown(button: MouseButton): void;
+export function mouseUp(button: MouseButton): void;
+export function mouseClick(button: MouseButton): void;
