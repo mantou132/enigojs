@@ -4,7 +4,7 @@
   "description": "input simulation",
   "main": "index.js",
   "scripts": {
-    "install": "rm -rf native && neon build -p src && cp -r src/native native",
+    "install": "neon build -p src",
     "build": "tsc",
     "watch": "tsc -watch",
     "lint": "eslint --ext .ts --fix src/",
