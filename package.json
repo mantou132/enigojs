@@ -1,6 +1,6 @@
 {
   "name": "enigojs",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "description": "input simulation",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "/index.js.map",
     "/index.d.ts",
     "/index.d.ts.map",
-    "/lib/"
+    "/lib/",
+    "/src/"
   ],
   "keywords": [
     "keyboard",
