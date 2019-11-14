@@ -16,7 +16,10 @@
     "/index.d.ts",
     "/index.d.ts.map",
     "/lib/",
-    "/src/"
+    "/src/",
+    "!/src/native/target/**",
+    "!/src/native/index.node",
+    "!/src/native/artifacts.json"
   ],
   "keywords": [
     "keyboard",
