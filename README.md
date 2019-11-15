@@ -1,19 +1,14 @@
-Is [enigo](https://github.com/enigo-rs/enigo)'s js binding
+Is [enigo](https://github.com/enigo-rs/enigo)'s nodejs binding
 
 ## Usage
 
 ```js
-import { mouseMoveTo, keySequenceParse, mouseClick } from 'enigojs';
+const enigojs = require('enigojs');
 
-mouseMoveTo(10, 10);
-
-keySequenceParse('{+CTRL}a{-CTRL}{+SHIFT}Hello World{-SHIFT}');
-
-// 2 is MouseRightButton
-mouseClick(2);
+enigojs.mouseMoveTo(10, 10);
+enigojs.keySequenceParse('{+CTRL}a{-CTRL}{+SHIFT}Hello World{-SHIFT}');
+enigojs.mouseClick(enigojs.MouseButton.Right);
 ```
-
-## Electron
 
 When the electron ABI version and the node version do not match,
 you need to:
