@@ -1,6 +1,7 @@
-/src/native/target
-/src/native/index.node
-/src/native/artifacts.json
+/native/target
+/native/index.node
+/native/index.d.ts
+/native/artifacts.json
 **/*~
 
 /node_modules/
@@ -8,7 +9,6 @@
 # Compiler output
 /build/
 /coverage/
-/native/
 /lib/
 /index.d.ts
 /index.d.ts.map
