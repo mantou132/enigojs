@@ -1,10 +1,10 @@
 {
   "name": "enigojs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "input simulation",
   "main": "index.js",
   "scripts": {
-    "install": "neon build",
+    "install": "neon build --release",
     "build": "tsc",
     "watch": "tsc -watch",
     "lint": "eslint --ext .ts --fix src/",
