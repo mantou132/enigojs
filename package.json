@@ -1,10 +1,10 @@
 {
   "name": "enigojs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "input simulation",
   "main": "index.js",
   "scripts": {
-    "install": "neon build -p src && copyfiles -f \"src/native/index.*\" native",
+    "install": "neon build --release -p src && copyfiles -f \"src/native/index.*\" native",
     "build": "tsc",
     "watch": "tsc -watch",
     "lint": "eslint --ext .ts --fix src/",
