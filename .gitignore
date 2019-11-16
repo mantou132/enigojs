@@ -8,7 +8,7 @@
 # Compiler output
 /build/
 /coverage/
-/~root/
+/native/
 /lib/
 /index.d.ts
 /index.d.ts.map

@@ -1,10 +1,10 @@
 {
   "name": "enigojs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "input simulation",
   "main": "index.js",
   "scripts": {
-    "install": "neon build --release",
+    "install": "neon build -p src && copyfiles -f \"src/native/index.*\" native",
     "build": "tsc",
     "watch": "tsc -watch",
     "lint": "eslint --ext .ts --fix src/",
@@ -38,6 +38,7 @@
     "@types/node": "^12.12.7",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
+    "copyfiles": "^2.1.1",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
