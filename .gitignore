@@ -8,6 +8,7 @@
 
 # Compiler output
 /build/
+/examples/
 /coverage/
 /lib/
 /index.d.ts

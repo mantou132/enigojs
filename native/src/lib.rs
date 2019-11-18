@@ -79,47 +79,53 @@ fn get_mouse_button(js_enum_value: i32) -> MouseButton {
 }
 
 fn mouse_move_to(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let x = cx.argument::<JsNumber>(0)?.value() as i32;
-    let y = cx.argument::<JsNumber>(1)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.mouse_move_to(x, y);
-    Ok(cx.undefined())
+    // let x = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let y = cx.argument::<JsNumber>(1)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.mouse_move_to(x, y);
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn mouse_move_relative(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let x = cx.argument::<JsNumber>(0)?.value() as i32;
-    let y = cx.argument::<JsNumber>(1)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.mouse_move_relative(x, y);
-    Ok(cx.undefined())
+    // let x = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let y = cx.argument::<JsNumber>(1)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.mouse_move_relative(x, y);
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn key_down(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.key_down(get_key(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.key_down(get_key(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn key_up(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.key_up(get_key(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.key_up(get_key(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn key_click(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.key_click(get_key(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.key_click(get_key(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn key_sequence(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let s = cx.argument::<JsString>(0)?.value();
-    let mut enigo = Enigo::new();
-    enigo.key_sequence(&s);
-    Ok(cx.undefined())
+    // let s = cx.argument::<JsString>(0)?.value();
+    // let mut enigo = Enigo::new();
+    // enigo.key_sequence(&s);
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn key_sequence_parse(mut cx: FunctionContext) -> JsResult<JsUndefined> {
@@ -130,24 +136,27 @@ fn key_sequence_parse(mut cx: FunctionContext) -> JsResult<JsUndefined> {
 }
 
 fn mouse_down(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.mouse_down(get_mouse_button(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.mouse_down(get_mouse_button(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn mouse_up(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.mouse_up(get_mouse_button(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.mouse_up(get_mouse_button(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 fn mouse_click(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    let mut enigo = Enigo::new();
-    enigo.mouse_click(get_mouse_button(js_enum_value));
-    Ok(cx.undefined())
+    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+    // let mut enigo = Enigo::new();
+    // enigo.mouse_click(get_mouse_button(js_enum_value));
+    // Ok(cx.undefined())
+    unimplemented!()
 }
 
 register_module!(mut cx, {
