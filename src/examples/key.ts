@@ -1,10 +1,12 @@
-import { Key, keyClick, keySequenceParse } from '..';
+import { Key, Enigo } from '..';
 
-// keyClick(Key.A);
+const enigo = new Enigo();
 
-keySequenceParse('{+META}v{-META}');
-keySequenceParse('{+META}v{-META}');
-keySequenceParse('{+META}v{-META}');
-keySequenceParse('{+META}v{-META}');
-keySequenceParse('{+META}v{-META}');
-keySequenceParse('{+META}v{-META}');
+enigo.keyClick(Key.A);
+
+enigo.keySequenceParse('{+META}v{-META}');
+enigo.keySequenceParse('{+META}v{-META}');
+enigo.keySequenceParse('{+META}v{-META}');
+enigo.keySequenceParse('{+META}v{-META}');
+enigo.keySequenceParse('{+META}v{-META}');
+enigo.keySequenceParse('{+META}v{-META}');

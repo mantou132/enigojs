@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { MouseButton, Key } from '../lib/type';
 
-export function mouseMoveTo(x: number, y: number): void;
-export function mouseMoveToRelative(x: number, y: number): void;
-export function keyDown(key: Key): void;
-export function keyUp(key: Key): void;
-export function keyClick(key: Key): void;
-export function keySequence(keySequence: string): void;
-export function keySequenceParse(keySequence: string): void;
-export function mouseDown(button: MouseButton): void;
-export function mouseUp(button: MouseButton): void;
-export function mouseClick(button: MouseButton): void;
+export class Enigo {
+  mouseMoveTo(x: number, y: number): void;
+  mouseMoveRelative(x: number, y: number): void;
+  mouseDown(button: MouseButton): void;
+  mouseUp(button: MouseButton): void;
+  mouseClick(button: MouseButton): void;
+  keyDown(key: Key): void;
+  keyUp(key: Key): void;
+  keyClick(key: Key): void;
+  keySequence(keySequence: string): void;
+  keySequenceParse(keySequence: string): void;
+}

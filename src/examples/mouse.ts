@@ -1,8 +1,10 @@
-import { MouseButton, mouseClick, mouseMoveToRelative } from '..';
+import { MouseButton, Enigo } from '..';
 
-mouseClick(MouseButton.Right);
-mouseMoveToRelative(-20, -20);
+const enigo = new Enigo();
+
+enigo.mouseClick(MouseButton.Right);
+enigo.mouseMoveRelative(-20, -20);
 
 setTimeout(() => {
-  mouseClick(MouseButton.Left);
+  enigo.mouseClick(MouseButton.Left);
 }, 1000);

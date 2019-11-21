@@ -1,4 +1,3 @@
-/native/target
 /native/index.node
 /native/index.d.ts
 /native/artifacts.json
@@ -8,6 +7,7 @@
 
 # Compiler output
 /build/
+/target/
 /examples/
 /coverage/
 /lib/

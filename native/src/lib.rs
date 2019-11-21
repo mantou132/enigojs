@@ -1,5 +1,9 @@
-use neon::prelude::*;
 use enigo::*;
+use neon::borrow::*;
+use neon::prelude::*;
+
+/// https://neon-bindings.com/docs/classes
+/// https://github.com/enigo-rs/enigo/issues/80#issuecomment-555815618
 
 fn get_key(js_enum_value: i32) -> Key {
     match js_enum_value {
@@ -13,55 +17,55 @@ fn get_key(js_enum_value: i32) -> Key {
         7 => Key::Escape,
         8 => Key::F1,
         9 => Key::F10,
-        10=> Key::F11,
-        11=> Key::F12,
-        12=> Key::F2,
-        13=> Key::F3,
-        14=> Key::F4,
-        15=> Key::F5,
-        16=> Key::F6,
-        17=> Key::F7,
-        18=> Key::F8,
-        19=> Key::F9,
-        20=> Key::Home,
-        21=> Key::LeftArrow,
-        22=> Key::Meta,
-        23=> Key::Option,
-        24=> Key::PageDown,
-        25=> Key::PageUp,
-        26=> Key::Return,
-        27=> Key::RightArrow,
-        28=> Key::Shift,
-        29=> Key::Space,
-        30=> Key::Tab,
-        31=> Key::UpArrow,
-        32=> Key::Layout('a'),
-        33=> Key::Layout('b'),
-        34=> Key::Layout('c'),
-        35=> Key::Layout('d'),
-        36=> Key::Layout('e'),
-        37=> Key::Layout('f'),
-        38=> Key::Layout('g'),
-        39=> Key::Layout('h'),
-        40=> Key::Layout('i'),
-        41=> Key::Layout('j'),
-        42=> Key::Layout('k'),
-        43=> Key::Layout('l'),
-        44=> Key::Layout('m'),
-        45=> Key::Layout('n'),
-        46=> Key::Layout('o'),
-        47=> Key::Layout('p'),
-        48=> Key::Layout('q'),
-        49=> Key::Layout('r'),
-        50=> Key::Layout('s'),
-        51=> Key::Layout('t'),
-        52=> Key::Layout('u'),
-        53=> Key::Layout('v'),
-        54=> Key::Layout('w'),
-        55=> Key::Layout('x'),
-        56=> Key::Layout('y'),
-        57=> Key::Layout('z'),
-        _ => unreachable!()
+        10 => Key::F11,
+        11 => Key::F12,
+        12 => Key::F2,
+        13 => Key::F3,
+        14 => Key::F4,
+        15 => Key::F5,
+        16 => Key::F6,
+        17 => Key::F7,
+        18 => Key::F8,
+        19 => Key::F9,
+        20 => Key::Home,
+        21 => Key::LeftArrow,
+        22 => Key::Meta,
+        23 => Key::Option,
+        24 => Key::PageDown,
+        25 => Key::PageUp,
+        26 => Key::Return,
+        27 => Key::RightArrow,
+        28 => Key::Shift,
+        29 => Key::Space,
+        30 => Key::Tab,
+        31 => Key::UpArrow,
+        32 => Key::Layout('a'),
+        33 => Key::Layout('b'),
+        34 => Key::Layout('c'),
+        35 => Key::Layout('d'),
+        36 => Key::Layout('e'),
+        37 => Key::Layout('f'),
+        38 => Key::Layout('g'),
+        39 => Key::Layout('h'),
+        40 => Key::Layout('i'),
+        41 => Key::Layout('j'),
+        42 => Key::Layout('k'),
+        43 => Key::Layout('l'),
+        44 => Key::Layout('m'),
+        45 => Key::Layout('n'),
+        46 => Key::Layout('o'),
+        47 => Key::Layout('p'),
+        48 => Key::Layout('q'),
+        49 => Key::Layout('r'),
+        50 => Key::Layout('s'),
+        51 => Key::Layout('t'),
+        52 => Key::Layout('u'),
+        53 => Key::Layout('v'),
+        54 => Key::Layout('w'),
+        55 => Key::Layout('x'),
+        56 => Key::Layout('y'),
+        57 => Key::Layout('z'),
+        _ => unreachable!(),
     }
 }
 
@@ -74,101 +78,92 @@ fn get_mouse_button(js_enum_value: i32) -> MouseButton {
         4 => MouseButton::ScrollDown,
         5 => MouseButton::ScrollLeft,
         6 => MouseButton::ScrollRight,
-        _ => unreachable!()
+        _ => unreachable!(),
     }
 }
 
-fn mouse_move_to(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let x = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let y = cx.argument::<JsNumber>(1)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.mouse_move_to(x, y);
-    // Ok(cx.undefined())
-    unimplemented!()
+fn run<F>(
+    f: F,
+    mut cx: CallContext<'_, JsEnigo>,
+) -> Result<Handle<'_, JsValue>, neon::result::Throw>
+where
+    F: Fn(RefMut<'_, &mut Enigo>) -> (),
+{
+    let mut this = cx.this();
+    let guard = cx.lock(); // immutable borrow
+    let enigo = this.borrow_mut(&guard);
+    f(enigo); // move
+    Ok(cx.undefined().upcast())
 }
 
-fn mouse_move_relative(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let x = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let y = cx.argument::<JsNumber>(1)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.mouse_move_relative(x, y);
-    // Ok(cx.undefined())
-    unimplemented!()
+declare_types! {
+    pub class JsEnigo for Enigo {
+        init(_cx) {
+            Ok(Enigo::new())
+        }
+        method mouseMoveTo(mut cx) {
+            let x = cx.argument::<JsNumber>(0)?.value() as i32;
+            let y = cx.argument::<JsNumber>(1)?.value() as i32;
+            run(|mut enigo| {
+                enigo.mouse_move_to(x, y);
+            }, cx)
+        }
+        method mouseMoveRelative(mut cx) {
+            let x = cx.argument::<JsNumber>(0)?.value() as i32;
+            let y = cx.argument::<JsNumber>(1)?.value() as i32;
+            run(|mut enigo| {
+                enigo.mouse_move_relative(x, y);
+            }, cx)
+        }
+        method mouseDown(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.mouse_down(get_mouse_button(js_enum_value));
+            }, cx)
+        }
+        method mouseUp(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.mouse_up(get_mouse_button(js_enum_value));
+            }, cx)
+        }
+        method mouseClick(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.mouse_click(get_mouse_button(js_enum_value));
+            }, cx)
+        }
+        method keyDown(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.key_down(get_key(js_enum_value));
+            }, cx)
+        }
+        method keyUp(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.key_up(get_key(js_enum_value));
+            }, cx)
+        }
+        method keyClick(mut cx) {
+            let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
+            run(|mut enigo| {
+                enigo.key_click(get_key(js_enum_value));
+            }, cx)
+        }
+        method keySequence(mut cx) {
+            let s = cx.argument::<JsString>(0)?.value();
+            run(|mut enigo| {
+                enigo.key_sequence(&s);
+            }, cx)
+        }
+        method keySequenceParse(mut cx) {
+            let s = cx.argument::<JsString>(0)?.value();
+            run(|mut enigo| {
+                enigo.key_sequence_parse(&s);
+            }, cx)
+        }
+    }
 }
 
-fn key_down(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.key_down(get_key(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn key_up(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.key_up(get_key(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn key_click(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.key_click(get_key(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn key_sequence(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let s = cx.argument::<JsString>(0)?.value();
-    // let mut enigo = Enigo::new();
-    // enigo.key_sequence(&s);
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn key_sequence_parse(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let s = cx.argument::<JsString>(0)?.value();
-    let mut enigo = Enigo::new();
-    enigo.key_sequence_parse(&s);
-    Ok(cx.undefined())
-}
-
-fn mouse_down(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.mouse_down(get_mouse_button(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn mouse_up(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.mouse_up(get_mouse_button(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-fn mouse_click(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    // let js_enum_value = cx.argument::<JsNumber>(0)?.value() as i32;
-    // let mut enigo = Enigo::new();
-    // enigo.mouse_click(get_mouse_button(js_enum_value));
-    // Ok(cx.undefined())
-    unimplemented!()
-}
-
-register_module!(mut cx, {
-    cx.export_function("mouseMoveTo", mouse_move_to)?;
-    cx.export_function("mouseMoveToRelative", mouse_move_relative)?;
-    cx.export_function("keyDown", key_down)?;
-    cx.export_function("keyUp", key_up)?;
-    cx.export_function("keyClick", key_click)?;
-    cx.export_function("keySequence", key_sequence)?;
-    cx.export_function("keySequenceParse", key_sequence_parse)?;
-    cx.export_function("mouseDown", mouse_down)?;
-    cx.export_function("mouseUp", mouse_up)?;
-    cx.export_function("mouseClick", mouse_click)?;
-    Ok(())
-});
+register_module!(mut m, { m.export_class::<JsEnigo>("Enigo") });
